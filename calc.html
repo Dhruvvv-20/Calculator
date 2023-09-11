@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+
+<body>
+    <div class="page">
+        <div class="container">
+            <div class="textarea">
+                <input type="text" name="text" id="text" placeholder="Enter Your Expression. ">
+            </div>
+            <div class="weee">
+                <button class="row1">C</button>
+                <button class="row1">⌫</button>
+                <button class="row1">%</button>
+                <button class="col1">÷</button>
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button class="col1">*</button>
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button class="col1">-</button>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button class="col1">+</button>
+                <button id="zero">0</button>
+                <button>.</button>
+                <button class="col1">=</button>
+            </div>
+            <style>
+                .weee {
+                    display: grid;
+                    grid-template-columns: repeat(4, 75px);
+                    grid-template-rows: repeat(5, 75px);
+                    gap: 4px 7px;
+                    justify-content: center;
+                    margin-top: 15px;
+
+                }
+
+                .weee button {
+                    border: 1px solid black;
+                    border-radius: 50%;
+                    font-size: x-large;
+                }
+
+                #zero {
+                    grid-column: span 2;
+                    border-radius: 40px;
+                }
+
+                .row1 {
+                    background-color: lightgray;
+                    color: black;
+
+                }
+
+                .col1 {
+                    background-color: gold;
+
+                }
+
+                * {
+                    margin: 0;
+                    padding: 0;
+
+                }
+
+                .page {
+                    background-color: #D6D4E8;
+                    height: 100vh;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .container {
+                    background-color: #070616;
+                    height: 500px;
+                    width: 400px;
+                    border: 3px solid black;
+                    box-sizing: border-box;
+
+                }
+
+                .textarea {
+                    display: flex;
+                    justify-content: center;
+                    height: 80px;
+                }
+
+                #text {
+                    font-size: xx-large;
+                    width: 490px;
+                    text-align: right;
+                }
+
+                button {
+                    padding: 20px;
+
+                }
+
+                button:active {
+                    transform: scale(0.95);
+                }
+
+                #zero {
+                    padding: 20px 45px;
+
+                }
+            </style>
+
+<
+    <script>
+    var string1 = "";
+    var buttons = document.querySelectorAll('.weee button');
+
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var buttonText = button.textContent;
+            
+            if (buttonText === "=") {
+                // Perform the calculation and update the display
+                try {
+                    var result = eval(string1); // Using eval to evaluate the expression
+                    document.getElementById('text').value = result;
+                } catch (error) {
+                    document.getElementById('text').value = "Error";
+                }
+                string1 = ""; // Reset the input string after calculation
+            } else if (buttonText === "C") {
+                // Handle the "C" (clear) button here, possibly reset string1 and the display.
+                string1 = "";
+                document.getElementById('text').value = "";
+            } else if (buttonText === "⌫") {
+                // Handle backspace: remove the last character from the input string
+                string1 = string1.slice(0, -1);
+                document.getElementById('text').value = string1;
+            } else {
+                // For other buttons, concatenate the text to the input string
+                string1 += buttonText;
+                document.getElementById('text').value = string1;
+            }
+        });
+    });
+</script>
+</body>
+
+</html>
